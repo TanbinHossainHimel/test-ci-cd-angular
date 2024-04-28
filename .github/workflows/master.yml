@@ -47,6 +47,7 @@ jobs:
           KEY: ${{ secrets.LIGHTSAIL_KEY }}
           source: angular-app.zip
           target: "/var/www/"
+          strip_components: 1
 
       - name: Extract File in Remote Sever
         uses: appleboy/ssh-action@v0.1.7
