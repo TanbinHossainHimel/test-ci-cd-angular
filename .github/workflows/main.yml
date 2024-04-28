@@ -1,4 +1,8 @@
-name: CI
+name: Deployment
+
+env:
+  DEPLOY_PACKAGE_NAME_FILE: "${{ github.sha }}.zip"
+  DEPLOY_PACKAGE_NAME: "${{ github.sha }}"
 
 on:
   push:
@@ -22,11 +26,13 @@ jobs:
 
       - name: Install angular
         run: npm install -g @angular/cli
-      
+
       - name: Install dependencies
         run: npm install
 
       - name: Build Angular project
         run: ng build
 
-      
+      - name: Create zip deployment package
+        run: zip -r ${{env.DEPLOY_PACKAGE_NAME_FILE}} ./dist/${{env.DEPLOY_PACKAGE_NAME}}/browser -x *.git*
+
