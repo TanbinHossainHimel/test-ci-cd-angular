@@ -34,7 +34,7 @@ jobs:
         run: ng build
 
       - name: Create zip deployment package
-        run: zip -r files ./dist/test-ci-cd-angular/browser
+        run: zip -r test-ci-cd-angular ./dist/test-ci-cd-angular/browser
 
       - name: Check
         run: ls
