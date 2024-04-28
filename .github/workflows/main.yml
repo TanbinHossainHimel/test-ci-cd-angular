@@ -34,5 +34,5 @@ jobs:
         run: ng build
 
       - name: Create zip deployment package
-        run: echo "${{github.sha}}"zip -r ${{env.DEPLOY_PACKAGE_NAME_FILE}} ./dist/${{env.DEPLOY_PACKAGE_NAME}}/browser -x *.git*
+        run: echo "${{github.sha}}" zip -r ${{env.DEPLOY_PACKAGE_NAME_FILE}} ./dist/${{env.APP_NAME}}/browser -x *.git*
 
