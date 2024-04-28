@@ -46,6 +46,6 @@ jobs:
           username: ${{secrets.LIGTHSAIL_USERNAME}}
           key: ${{secrets.LIGHTSAIL_KEY}}
           port: 22
-          source: ${{env.DEPLOY_PACKAGE_NAME_FILE}}
+          source: ${{secrets.APP_NAME}}.zip
           target: "/home/${{secrets.LIGHTSAIL_USERNAME}}"
 
