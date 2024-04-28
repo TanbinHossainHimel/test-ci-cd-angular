@@ -41,7 +41,7 @@ jobs:
         with:
           host: ${{secrets.LIGHTSAIL_IP}}
           username: ${{secrets.LIGTHSAIL_USERNAME}}
-          key: ${{secrets.LIGTHSAIL_KEY}}
+          KEY: ${{secrets.LIGTHSAIL_KEY}}
           password: ""
           passphrase: ""
           port: 22
