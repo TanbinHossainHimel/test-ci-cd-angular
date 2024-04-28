@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install angular
+      - name: Install Angular
         run: npm install -g @angular/cli
 
       - name: Install dependencies
