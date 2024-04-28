@@ -40,12 +40,11 @@ jobs:
         run: ls
 
       - name: Copy File via SSH Password
-        uses: appleboy/scp-action@master
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{secrets.LIGHTSAIL_IP}}
           username: ${{secrets.LIGTHSAIL_USERNAME}}
           key: ${{secrets.LIGHTSAIL_KEY}}
           port: 22
-          source: ${{secrets.APP_NAME}}.zip
-          target: "/home/${{secrets.LIGHTSAIL_USERNAME}}"
-
+          source: angular-app.zip
+          target: "/home/${{secrets.LIGHTSAIL_USERNAME}}/test"
