@@ -34,7 +34,7 @@ jobs:
         run: ng build
 
       - name: Create zip deployment package
-        run: echo "${{github.sha}}" zip -r ${{env.DEPLOY_PACKAGE_NAME_FILE}} ./dist/${{secrets.APP_NAME}}/browser -x *.git*
+        run: echo "${{secrets.LIGHTSAIL_IP}}" zip -r ${{env.DEPLOY_PACKAGE_NAME_FILE}} ./dist/${{secrets.APP_NAME}}/browser -x *.git*
 
       - name: Copy File via SSH Password
         uses: appleboy/scp-action@master
