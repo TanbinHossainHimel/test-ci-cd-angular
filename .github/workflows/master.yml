@@ -57,7 +57,4 @@ jobs:
           KEY: ${{ secrets.LIGHTSAIL_KEY }}
           source: angular-app.zip
           script:
-            sudo apt-get install zip unzip
-            cd /var/www/
-            unzip angular-app.zip
-            ls
+            sudo apt-get install zip unzip && cd /var/www/ && unzip angular-app.zip && ls
