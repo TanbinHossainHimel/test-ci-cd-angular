@@ -50,7 +50,7 @@ jobs:
           strip_components: 2
 
       - name: Extract File in Remote Sever
-        uses: appleboy/scp-action@master
+        uses: appleboy/ssh-action@v0.1.7
         with:
           HOST: ${{  secrets.LIGHTSAIL_IP}}
           USERNAME: ${{ secrets.LIGHTSAIL_USERNAME}}
