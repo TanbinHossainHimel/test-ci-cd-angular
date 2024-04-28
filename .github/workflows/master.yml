@@ -41,11 +41,10 @@ jobs:
 
       - name: Copy File via SSH Password
         uses: appleboy/scp-action@master
-        env:
+        with:
           HOST: ${{  secrets.LIGHTSAIL_IP}}
           USERNAME: ${{ secrets.LIGHTSAIL_USERNAME}}
           KEY: ${{ secrets.LIGHTSAIL_KEY }}
-        with:
           source: angular-app.zip
           target: "/var/www/"
           strip_components: 1
