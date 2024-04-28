@@ -46,5 +46,5 @@ jobs:
           username: ${{secrets.LIGTHSAIL_USERNAME}}
           key: ${{secrets.LIGHTSAIL_KEY}}
           port: 22
-          source: angular-app.zip
+          source: angular-app
           target: "/home/${{secrets.LIGHTSAIL_USERNAME}}/test"
