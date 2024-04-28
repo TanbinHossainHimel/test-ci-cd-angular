@@ -47,3 +47,4 @@ jobs:
           KEY: ${{ secrets.LIGHTSAIL_KEY }}
           source: angular-app.zip
           target: "/var/www/"
+          strip_components: 2
