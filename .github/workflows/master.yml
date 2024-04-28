@@ -47,4 +47,4 @@ jobs:
           key: ${{secrets.LIGHTSAIL_KEY}}
           port: 22
           source: angular-app
-          target: "/home/${{secrets.LIGHTSAIL_USERNAME}}/test"
+          target: "/var/www/"
