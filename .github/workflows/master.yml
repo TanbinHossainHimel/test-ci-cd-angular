@@ -48,7 +48,7 @@ jobs:
           ssh-private-key: ${{ secrets.LIGHTSAIL_KEY}}
 
       - name: SCP file to remote server
-        run: echo $SSH_AUTH_SOCK
+        run: touch key.pem && echo ${{secrets.LIGHTSAIL_KEY}} > key.pem
 
       - name: SCP file to remote server
         run: scp -i ${{env.SSH_AUTH_SOCK}} angular-app.zip ubuntu@13.214.22.14:/var/www/
