@@ -48,27 +48,7 @@ jobs:
           ssh-private-key: ${{ secrets.LIGHTSAIL_KEY}}
 
       - name: SCP file to remote server
-        run: touch key.pem && echo "${{secrets.LIGHTSAIL_KEY}}" > key.pem
+        run: echo ${{env}}
 
       - name: SCP file to remote server
-        run: scp -i key.pem angular-app.zip ubuntu@13.214.22.14:/var/www/
-
-#      - name: Copy File via SSH Password
-#        uses: appleboy/scp-action@master
-#        with:
-#          HOST: ${{  secrets.LIGHTSAIL_IP}}
-#          USERNAME: ${{ secrets.LIGHTSAIL_USERNAME}}
-#          KEY: ${{ secrets.LIGHTSAIL_KEY }}
-#          source: angular-app.zip
-#          target: "/var/www/"
-#          strip_components: 1
-#
-#      - name: Extract File in Remote Sever
-#        uses: appleboy/ssh-action@v0.1.7
-#        with:
-#          HOST: ${{  secrets.LIGHTSAIL_IP}}
-#          USERNAME: ${{ secrets.LIGHTSAIL_USERNAME}}
-#          KEY: ${{ secrets.LIGHTSAIL_KEY }}
-#          source: angular-app.zip
-#          script:
-#            sudo apt-get install zip unzip && cd /var/www/ && unzip angular-app.zip && ls
+        run: scp -i ${{env.SSH_AUTH_SOCK}} angular-app.zip ubuntu@13.214.22.14:/var/www/
