@@ -33,7 +33,7 @@ jobs:
           ssh-private-key: ${{ secrets.LIGHTSAIL_KEY}}
 
       - name: SCP file to remote server
-        run: scp -i $SSH_AUTH_SOCK abc.text ubuntu@13.214.22.14:/var/www/
+        run: scp -i ${{secrets.LIGHTSAIL_KEY}} abc.text ubuntu@13.214.22.14:/var/www/
 
       - name: Install Angular
         run: npm install -g @angular/cli
