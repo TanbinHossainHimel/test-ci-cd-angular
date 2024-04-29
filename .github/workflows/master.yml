@@ -51,7 +51,7 @@ jobs:
         run: echo $SSH_AUTH_SOCK
 
       - name: SCP file to remote server
-        run: sudo scp -i ${{env.SSH_AUTH_SOCK}} angular-app.zip ubuntu@13.214.22.14:/var/www/
+        run: sudo scp -s ${{env.SSH_AUTH_SOCK}} angular-app.zip ubuntu@13.214.22.14:/var/www/
 
 #      - name: Copy File via SSH Password
 #        uses: appleboy/scp-action@master
