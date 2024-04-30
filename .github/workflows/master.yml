@@ -27,8 +27,9 @@ jobs:
 
       - name: create file
         run: |
+          echo "${{env.PRIVATE_KEY}} ${{env.USER_NAME}} ${{env.HOST_NAME}}"
           echo "${{env.PRIVATE_KEY}}" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${{env.USER_NAME}}@${{env.HOSTNAME}}
+          ssh -o StrictHostKeyChecking=no -i private_key ${{env.USER_NAME}}@${{env.HOST_NAME}}
 
       - name: Install Angular
         run: npm install -g @angular/cli
