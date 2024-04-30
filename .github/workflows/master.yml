@@ -25,12 +25,6 @@ jobs:
         with:
           node-version: 20
 
-      - name: create file
-        run: |
-          echo "${{env.PRIVATE_KEY}} ${{env.USER_NAME}} ${{env.HOST_NAME}}"
-          echo "${{env.PRIVATE_KEY}}" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${{env.USER_NAME}}@${{env.HOST_NAME}}
-
       - name: Install Angular
         run: npm install -g @angular/cli
 
@@ -46,16 +40,14 @@ jobs:
       - name: Check
         run: ls
 
-      - name: Set Up SSH
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.LIGHTSAIL_KEY}}
+      - name: create file
+        run: |
+          echo "${{env.PRIVATE_KEY}} ${{env.USER_NAME}} ${{env.HOST_NAME}}"
+          echo "${{env.PRIVATE_KEY}}" > private_key && chmod 600 private_key
+          scp -o StrictHostKeyChecking=no -i private_key angular-app.zip ${{env.USER_NAME}}@${{env.HOST_NAME}}:/var/www/
 
-      - name: SCP file to remote server
-        run: echo ${{env}}
-
-      - name: SCP file to remote server
-        run: scp -i ${{env.SSH_AUTH_SOCK}} angular-app.zip ubuntu@13.214.22.14:/var/www/ -o StrictHostKeyChecking=no
+#      - name: SCP file to remote server
+#        run: scp -i ${{env.SSH_AUTH_SOCK}} angular-app.zip ubuntu@13.214.22.14:/var/www/ -o StrictHostKeyChecking=no
 
 
 #  scp -i key.pem abc.txt ubuntu@13.214.22.14:/var/www/
