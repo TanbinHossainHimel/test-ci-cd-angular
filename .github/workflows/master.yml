@@ -44,7 +44,7 @@ jobs:
         run: |
           echo "${{env.PRIVATE_KEY}} ${{env.USER_NAME}} ${{env.HOST_NAME}}"
           echo "${{env.PRIVATE_KEY}}" > private_key && chmod 600 private_key
-          scp -o StrictHostKeyChecking=no -i private_key ./dist/test-ci-cd-angular/browser ${{env.USER_NAME}}@${{env.HOST_NAME}}:/var/www/
+          scp -o StrictHostKeyChecking=no -i private_key angular-app.zip ${{env.USER_NAME}}@${{env.HOST_NAME}}:/var/www/
 
 #      - name: SCP file to remote server
 #        run: scp -i ${{env.SSH_AUTH_SOCK}} angular-app.zip ubuntu@13.214.22.14:/var/www/ -o StrictHostKeyChecking=no
