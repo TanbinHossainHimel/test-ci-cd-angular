@@ -1,8 +1,9 @@
 name: Deployment
 
 env:
-  DEPLOY_PACKAGE_NAME_FILE: "${{ github.sha }}.zip"
-  DEPLOY_PACKAGE_NAME: "${{ github.sha }}"
+  PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+  HOST_NAME: ${{secrets.LIGHTSAIL_IP}}
+  USER_NAME: ${{secrets.LIGHTSAIL_USERNAME}}
 
 on:
   push:
