@@ -51,7 +51,7 @@ jobs:
         run: echo ${{env}}
 
       - name: SCP file to remote server
-        run: scp -i ${{env.SSH_AUTH_SOCK}} angular-app.zip ubuntu@13.214.22.14:/var/www/
+        run: scp -i ${{env.SSH_AUTH_SOCK}} angular-app.zip ubuntu@13.214.22.14:/var/www/ -o StrictHostKeyChecking=no
 
 
 #  scp -i key.pem abc.txt ubuntu@13.214.22.14:/var/www/
