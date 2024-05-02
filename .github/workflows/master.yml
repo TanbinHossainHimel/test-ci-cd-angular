@@ -5,6 +5,7 @@ env:
   PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
   HOST_NAME: ${{secrets.LIGHTSAIL_IP}}
   USER_NAME: ${{secrets.LIGHTSAIL_USERNAME}}
+  SERVER_ROOT_DIRECTORY: "/var/www/"
 
 on:
   push:
@@ -45,10 +46,9 @@ jobs:
 
       - name: create file
         run: |
-          echo "${{env.PRIVATE_KEY}} ${{env.USER_NAME}} ${{env.HOST_NAME}}"
           echo "${{env.PRIVATE_KEY}}" > private_key && chmod 600 private_key
-          scp -o StrictHostKeyChecking=no -i private_key ./dist/test-ci-cd-angular/browser/angular-app.zip ${{env.USER_NAME}}@${{env.HOST_NAME}}:/var/www/
+          scp -o StrictHostKeyChecking=no -i private_key ./dist/${{env.APP_NAME}}/browser/${{env.APP_NAME}}.zip ${{env.USER_NAME}}@${{env.HOST_NAME}}:/var/www/
           ssh -o StrictHostKeyChecking=no -i private_key ${{env.USER_NAME}}@${{env.HOST_NAME}} '
-            cd /var/www/
-            sudo unzip -o angular-app.zip
+            cd ${{env.SERVER_ROOT_DIRECTORY}}
+            sudo unzip -o ${{env.APP_NAME}}.zip
           '
