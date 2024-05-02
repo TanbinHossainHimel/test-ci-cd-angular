@@ -41,7 +41,7 @@ jobs:
           zip -r ${{env.APP_NAME}} .
 
       - name: Check
-        run: ls
+        run: cd ./dist/${{env.APP_NAME}}/browser/ && ls
 
       - name: create file
         run: |
