@@ -5,7 +5,7 @@ env:
   PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
   HOST_NAME: ${{secrets.LIGHTSAIL_IP}}
   USER_NAME: ${{secrets.LIGHTSAIL_USERNAME}}
-  SERVER_ROOT_DIRECTORY: "/var/www/html"
+  SERVER_ROOT_DIRECTORY: "/var/www/html/tanbin"
 
 on:
   push:
@@ -34,7 +34,7 @@ jobs:
         run: npm install
 
       - name: Build Angular project
-        run: ng build
+        run: ng build --base-href=/tanbin/
 
       - name: Create Zip
         run: |
