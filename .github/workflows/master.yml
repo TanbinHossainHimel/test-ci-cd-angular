@@ -5,7 +5,7 @@ env:
   PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
   HOST_NAME: ${{secrets.LIGHTSAIL_IP}}
   USER_NAME: ${{secrets.LIGHTSAIL_USERNAME}}
-  SERVER_ROOT_DIRECTORY: "/var/www/"
+  SERVER_ROOT_DIRECTORY: "/var/www/html"
 
 on:
   push:
@@ -44,7 +44,7 @@ jobs:
       - name: Deploy to Server
         run: |
           echo "${{env.PRIVATE_KEY}}" > private_key && chmod 600 private_key
-          scp -o StrictHostKeyChecking=no -i private_key ./dist/${{env.APP_NAME}}/browser/${{env.APP_NAME}}.zip ${{env.USER_NAME}}@${{env.HOST_NAME}}:/var/www/
+          scp -o StrictHostKeyChecking=no -i private_key ./dist/${{env.APP_NAME}}/browser/${{env.APP_NAME}}.zip ${{env.USER_NAME}}@${{env.HOST_NAME}}:${{env.SERVER_ROOT_DIRECTORY}}
           ssh -o StrictHostKeyChecking=no -i private_key ${{env.USER_NAME}}@${{env.HOST_NAME}} '
             cd ${{env.SERVER_ROOT_DIRECTORY}}
             sudo unzip -o ${{env.APP_NAME}}.zip
