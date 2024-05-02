@@ -49,4 +49,5 @@ jobs:
             cd ${{env.SERVER_ROOT_DIRECTORY}}
             sudo unzip -o ${{env.APP_NAME}}.zip
             sudo rm ${{env.APP_NAME}}.zip
+            sudo systemctl restart nginx
           '
