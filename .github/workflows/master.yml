@@ -37,7 +37,7 @@ jobs:
       - name: Create zip deployment package
         run: |
           cd ./dist/test-ci-cd-angular/browser/
-          zip -o -r angular-app .
+          zip -r angular-app .
 
       - name: Check
         run: ls
@@ -49,7 +49,7 @@ jobs:
           scp -o StrictHostKeyChecking=no -i private_key ./dist/test-ci-cd-angular/browser/angular-app.zip ${{env.USER_NAME}}@${{env.HOST_NAME}}:/var/www/
           ssh -o StrictHostKeyChecking=no -i private_key ${{env.USER_NAME}}@${{env.HOST_NAME}} '
             cd /var/www/
-            sudo unzip angular-app.zip
+            sudo unzip -o angular-app.zip
           '
 
 #      - name: SCP file to remote server
