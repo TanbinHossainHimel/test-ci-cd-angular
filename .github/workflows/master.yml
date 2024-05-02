@@ -37,7 +37,7 @@ jobs:
       - name: Create zip deployment package
         run: |
           cd ./dist/test-ci-cd-angular/browser/
-          zip -r angular-app .
+          zip -o -r angular-app .
 
       - name: Check
         run: ls
