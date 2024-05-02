@@ -1,6 +1,7 @@
 name: Deployment
 
 env:
+  APP_NAME: "test-ci-cd-angular"
   PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
   HOST_NAME: ${{secrets.LIGHTSAIL_IP}}
   USER_NAME: ${{secrets.LIGHTSAIL_USERNAME}}
@@ -36,8 +37,8 @@ jobs:
 
       - name: Create zip deployment package
         run: |
-          cd ./dist/test-ci-cd-angular/browser/
-          zip -r angular-app .
+          cd ./dist/${{env.APP_NAME}}/browser/
+          zip -r ${{env.APP_NAME}} .
 
       - name: Check
         run: ls
@@ -51,9 +52,3 @@ jobs:
             cd /var/www/
             sudo unzip -o angular-app.zip
           '
-
-#      - name: SCP file to remote server
-#        run: scp -i ${{env.SSH_AUTH_SOCK}} angular-app.zip ubuntu@13.214.22.14:/var/www/ -o StrictHostKeyChecking=no
-
-
-#  scp -i key.pem abc.txt ubuntu@13.214.22.14:/var/www/
