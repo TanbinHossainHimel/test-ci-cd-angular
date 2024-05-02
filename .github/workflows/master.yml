@@ -5,7 +5,7 @@ env:
   PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
   HOST_NAME: ${{secrets.LIGHTSAIL_IP}}
   USER_NAME: ${{secrets.LIGHTSAIL_USERNAME}}
-  SERVER_ROOT_DIRECTORY: "/var/www/html/tanbin"
+  SERVER_ROOT_DIRECTORY: "/var/www/html"
 
 on:
   push:
