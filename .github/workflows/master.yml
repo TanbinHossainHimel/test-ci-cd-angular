@@ -6,6 +6,7 @@ env:
   HOST_NAME: ${{secrets.LIGHTSAIL_IP}}
   USER_NAME: ${{secrets.LIGHTSAIL_USERNAME}}
   SERVER_ROOT_DIRECTORY: "/var/www/html/tanbin"
+  BASE_HREF: "/tanbin/"
 
 on:
   push:
@@ -34,7 +35,7 @@ jobs:
         run: npm install
 
       - name: Build Angular project
-        run: ng build --base-href=/tanbin/
+        run: ng build --base-href=${{env.BASE_HREF}}
 
       - name: Create Zip
         run: |
