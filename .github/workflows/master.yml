@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Set Up Node.js
@@ -30,21 +30,18 @@ jobs:
       - name: Install Angular
         run: npm install -g @angular/cli
 
-      - name: Install dependencies
+      - name: Install Project Dependencies
         run: npm install
 
       - name: Build Angular project
         run: ng build
 
-      - name: Create zip deployment package
+      - name: Create Zip
         run: |
           cd ./dist/${{env.APP_NAME}}/browser/
           zip -r ${{env.APP_NAME}} .
 
-      - name: Check
-        run: cd ./dist/${{env.APP_NAME}}/browser/ && ls
-
-      - name: create file
+      - name: Deploy to Server
         run: |
           echo "${{env.PRIVATE_KEY}}" > private_key && chmod 600 private_key
           scp -o StrictHostKeyChecking=no -i private_key ./dist/${{env.APP_NAME}}/browser/${{env.APP_NAME}}.zip ${{env.USER_NAME}}@${{env.HOST_NAME}}:/var/www/
